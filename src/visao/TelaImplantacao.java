@@ -8,6 +8,7 @@ package visao;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 import model.CargaIniModel;
 import model.DadosCargaInicial;
 import model.ModeloTabelaAtualizacao;
@@ -34,13 +35,13 @@ public class TelaImplantacao extends javax.swing.JFrame {
 
     public TelaImplantacao() {
         initComponents();
-        preencherTabelaTel("select * from telefone");
-        preencherTabelaCarga("select * from cargainicial");
-        preencherTabelaBloqueio("select * from bloqueio");
-        preencherTabelaEmail("select * from email");
-        preencherTabelaAtualizacao("select * from atualizacao");
-        preencherTabelaCampanha("select * from camp_resul");
-        preencherTabelaConfiguracoes("select * from configuracoes");
+        preencherTabelaTel("select * from cargainicial c where c.cod >= 8 and c.cod <=18");
+        preencherTabelaCarga("select * from cargainicial c where c.cod >= 1 and c.cod <=7");
+        preencherTabelaBloqueio("select * from cargainicial c where c.cod >= 19 and c.cod <=28");
+        preencherTabelaEmail("select * from cargainicial c where c.cod >= 29 and c.cod <=36");
+        preencherTabelaAtualizacao("select * from cargainicial c where c.cod >= 37 and c.cod <=44");
+        preencherTabelaCampanha("select * from cargainicial c where c.cod >= 45 and c.cod <=57");
+        preencherTabelaConfiguracoes("select * from cargainicial c where c.cod >= 58 and c.cod <=71");
     }
 
     /**
@@ -60,9 +61,6 @@ public class TelaImplantacao extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
         jTableCarga = new javax.swing.JTable();
-        jtAcaoCarga = new javax.swing.JTextField();
-        jtObsCarga = new javax.swing.JTextField();
-        jLabel1 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane4 = new javax.swing.JScrollPane();
         jTableTelefone = new javax.swing.JTable();
@@ -81,7 +79,14 @@ public class TelaImplantacao extends javax.swing.JFrame {
         jPanel7 = new javax.swing.JPanel();
         jScrollPane9 = new javax.swing.JScrollPane();
         jtConfiguracao = new javax.swing.JTable();
-        btnAdicionarCarga = new javax.swing.JButton();
+        jPanel8 = new javax.swing.JPanel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jTableAdicional = new javax.swing.JTable();
+        btnAdicionaDescricao = new javax.swing.JButton();
+        jtAdicionalDescricao = new javax.swing.JTextField();
+        jtObservAdicional = new javax.swing.JTextField();
+        jButton1 = new javax.swing.JButton();
+        jPanel9 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Implantação");
@@ -118,18 +123,13 @@ public class TelaImplantacao extends javax.swing.JFrame {
 
             }
         ));
+        jTableCarga.setColumnSelectionAllowed(true);
+        jTableCarga.getTableHeader().setReorderingAllowed(false);
         jScrollPane3.setViewportView(jTableCarga);
+        jTableCarga.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
 
         jPanel1.add(jScrollPane3);
         jScrollPane3.setBounds(0, 10, 1170, 390);
-        jPanel1.add(jtAcaoCarga);
-        jtAcaoCarga.setBounds(0, 420, 870, 30);
-        jPanel1.add(jtObsCarga);
-        jtObsCarga.setBounds(870, 420, 300, 30);
-
-        jLabel1.setText("Adicionar tarefa manual");
-        jPanel1.add(jLabel1);
-        jLabel1.setBounds(0, 404, 220, 20);
 
         jtEmail.addTab("1.Carga Inicial", jPanel1);
 
@@ -144,7 +144,10 @@ public class TelaImplantacao extends javax.swing.JFrame {
 
             }
         ));
+        jTableTelefone.setColumnSelectionAllowed(true);
+        jTableTelefone.getTableHeader().setReorderingAllowed(false);
         jScrollPane4.setViewportView(jTableTelefone);
+        jTableTelefone.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -152,7 +155,7 @@ public class TelaImplantacao extends javax.swing.JFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 1170, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 8, Short.MAX_VALUE))
+                .addGap(0, 38, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -175,7 +178,10 @@ public class TelaImplantacao extends javax.swing.JFrame {
 
             }
         ));
+        jtableBloqueio.setColumnSelectionAllowed(true);
+        jtableBloqueio.getTableHeader().setReorderingAllowed(false);
         jScrollPane5.setViewportView(jtableBloqueio);
+        jtableBloqueio.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -183,7 +189,7 @@ public class TelaImplantacao extends javax.swing.JFrame {
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 1170, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 8, Short.MAX_VALUE))
+                .addGap(0, 38, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -206,15 +212,18 @@ public class TelaImplantacao extends javax.swing.JFrame {
 
             }
         ));
+        jTableEMail.setColumnSelectionAllowed(true);
+        jTableEMail.getTableHeader().setReorderingAllowed(false);
         jScrollPane6.setViewportView(jTableEMail);
+        jTableEMail.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
-                .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 1170, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 8, Short.MAX_VALUE))
+                .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 1183, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -237,8 +246,11 @@ public class TelaImplantacao extends javax.swing.JFrame {
 
             }
         ));
+        jTableAtualiz.setColumnSelectionAllowed(true);
         jTableAtualiz.setRowHeight(20);
+        jTableAtualiz.getTableHeader().setReorderingAllowed(false);
         jScrollPane7.setViewportView(jTableAtualiz);
+        jTableAtualiz.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
@@ -246,7 +258,7 @@ public class TelaImplantacao extends javax.swing.JFrame {
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 1170, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 8, Short.MAX_VALUE))
+                .addGap(0, 38, Short.MAX_VALUE))
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -269,8 +281,11 @@ public class TelaImplantacao extends javax.swing.JFrame {
 
             }
         ));
+        jTableCampanha.setColumnSelectionAllowed(true);
         jTableCampanha.setRowHeight(20);
+        jTableCampanha.getTableHeader().setReorderingAllowed(false);
         jScrollPane8.setViewportView(jTableCampanha);
+        jTableCampanha.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
 
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
@@ -278,7 +293,7 @@ public class TelaImplantacao extends javax.swing.JFrame {
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel6Layout.createSequentialGroup()
                 .addComponent(jScrollPane8, javax.swing.GroupLayout.PREFERRED_SIZE, 1170, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 8, Short.MAX_VALUE))
+                .addGap(0, 38, Short.MAX_VALUE))
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -301,8 +316,11 @@ public class TelaImplantacao extends javax.swing.JFrame {
 
             }
         ));
+        jtConfiguracao.setColumnSelectionAllowed(true);
         jtConfiguracao.setRowHeight(20);
+        jtConfiguracao.getTableHeader().setReorderingAllowed(false);
         jScrollPane9.setViewportView(jtConfiguracao);
+        jtConfiguracao.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
 
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
         jPanel7.setLayout(jPanel7Layout);
@@ -310,7 +328,7 @@ public class TelaImplantacao extends javax.swing.JFrame {
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel7Layout.createSequentialGroup()
                 .addComponent(jScrollPane9, javax.swing.GroupLayout.PREFERRED_SIZE, 1170, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 8, Short.MAX_VALUE))
+                .addGap(0, 38, Short.MAX_VALUE))
         );
         jPanel7Layout.setVerticalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -322,7 +340,76 @@ public class TelaImplantacao extends javax.swing.JFrame {
 
         jtEmail.addTab("7.Configurações", jPanel7);
 
-        btnAdicionarCarga.setText("Adicionar");
+        jTableAdicional.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Descrição", "Observação"
+            }
+        ));
+        jTableAdicional.setColumnSelectionAllowed(true);
+        jTableAdicional.getTableHeader().setReorderingAllowed(false);
+        jScrollPane2.setViewportView(jTableAdicional);
+        jTableAdicional.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+
+        btnAdicionaDescricao.setText("Adicionar ações");
+        btnAdicionaDescricao.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAdicionaDescricaoActionPerformed(evt);
+            }
+        });
+
+        jButton1.setText("Salvar alterações");
+
+        javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
+        jPanel8.setLayout(jPanel8Layout);
+        jPanel8Layout.setHorizontalGroup(
+            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane2)
+            .addGroup(jPanel8Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel8Layout.createSequentialGroup()
+                        .addComponent(btnAdicionaDescricao)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton1)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jPanel8Layout.createSequentialGroup()
+                        .addComponent(jtAdicionalDescricao, javax.swing.GroupLayout.PREFERRED_SIZE, 843, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jtObservAdicional, javax.swing.GroupLayout.PREFERRED_SIZE, 349, javax.swing.GroupLayout.PREFERRED_SIZE))))
+        );
+        jPanel8Layout.setVerticalGroup(
+            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel8Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jtAdicionalDescricao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jtObservAdicional, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 13, Short.MAX_VALUE)
+                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnAdicionaDescricao)
+                    .addComponent(jButton1))
+                .addGap(29, 29, 29))
+        );
+
+        jtEmail.addTab("Observações e adicionais", jPanel8);
+
+        javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);
+        jPanel9.setLayout(jPanel9Layout);
+        jPanel9Layout.setHorizontalGroup(
+            jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 1208, Short.MAX_VALUE)
+        );
+        jPanel9Layout.setVerticalGroup(
+            jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 534, Short.MAX_VALUE)
+        );
+
+        jtEmail.addTab("PSC-IP-000 INFORMACOES TECNICAS 1.1", jPanel9);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -334,8 +421,7 @@ public class TelaImplantacao extends javax.swing.JFrame {
                     .addComponent(btnVoltaImpl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnCronograma, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnPosImpl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnSalvarImpl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnAdicionarCarga, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(btnSalvarImpl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jtEmail)
                 .addContainerGap())
@@ -356,9 +442,7 @@ public class TelaImplantacao extends javax.swing.JFrame {
                         .addComponent(btnPosImpl, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnSalvarImpl, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnAdicionarCarga, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(96, 96, 96))))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
 
         setSize(new java.awt.Dimension(1348, 623));
@@ -391,8 +475,7 @@ public class TelaImplantacao extends javax.swing.JFrame {
         jTableTelefone.getColumnModel().getColumn(0).setPreferredWidth(900);
         jTableTelefone.getColumnModel().getColumn(1).setPreferredWidth(350);
     }
-
-    
+ 
     public void preencherTabelaAtualizacao(String Sql) {
         ArrayList dados = new ArrayList();
         String[] colunas = new String[]{"Descrição", "Observação"};
@@ -478,10 +561,6 @@ public class TelaImplantacao extends javax.swing.JFrame {
         jTableCampanha.getColumnModel().getColumn(1).setPreferredWidth(350);
     }
     
-    
-    
-    
-    
     public void preencherTabelaBloqueio(String Sql) {
         ArrayList dados = new ArrayList();
         String[] colunas = new String[]{"Descrição", "Observação"};
@@ -531,6 +610,25 @@ public class TelaImplantacao extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_btnPosImplActionPerformed
 
+    private void btnAdicionaDescricaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdicionaDescricaoActionPerformed
+
+        jTableAdicional.getColumnModel().getColumn(0).setPreferredWidth(900);
+        jTableAdicional.getColumnModel().getColumn(1).setPreferredWidth(350);
+        
+        
+        String descricao = jtAdicionalDescricao.getText().trim();
+        String observ = jtObservAdicional.getText().trim();
+        
+        if(jtAdicionalDescricao.getText().equals("") && jtObservAdicional.getText().equals("")){
+            JOptionPane.showMessageDialog(null, "Pelo menos 1 campo deve conter algum dado.");
+        }else{
+            DefaultTableModel val = (DefaultTableModel) jTableAdicional.getModel();
+            val.addRow(new String[]{descricao,observ});
+        }
+        jtAdicionalDescricao.setText("");jtObservAdicional.setText("");
+        jtAdicionalDescricao.requestFocus();
+    }//GEN-LAST:event_btnAdicionaDescricaoActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -567,12 +665,12 @@ public class TelaImplantacao extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnAdicionarCarga;
+    private javax.swing.JButton btnAdicionaDescricao;
     private javax.swing.JButton btnCronograma;
     private javax.swing.JButton btnPosImpl;
     private javax.swing.JButton btnSalvarImpl;
     private javax.swing.JButton btnVoltaImpl;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JButton jButton1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
@@ -580,6 +678,9 @@ public class TelaImplantacao extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
+    private javax.swing.JPanel jPanel8;
+    private javax.swing.JPanel jPanel9;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
@@ -587,15 +688,16 @@ public class TelaImplantacao extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane7;
     private javax.swing.JScrollPane jScrollPane8;
     private javax.swing.JScrollPane jScrollPane9;
+    private javax.swing.JTable jTableAdicional;
     private javax.swing.JTable jTableAtualiz;
     private javax.swing.JTable jTableCampanha;
     private javax.swing.JTable jTableCarga;
     private javax.swing.JTable jTableEMail;
     private javax.swing.JTable jTableTelefone;
-    private javax.swing.JTextField jtAcaoCarga;
+    private javax.swing.JTextField jtAdicionalDescricao;
     private javax.swing.JTable jtConfiguracao;
     private javax.swing.JTabbedPane jtEmail;
-    private javax.swing.JTextField jtObsCarga;
+    private javax.swing.JTextField jtObservAdicional;
     private javax.swing.JTable jtableBloqueio;
     // End of variables declaration//GEN-END:variables
 }
